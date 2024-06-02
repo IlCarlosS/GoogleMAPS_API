@@ -1,8 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+<<<<<<< HEAD
     <color name="black">#1b1c1e</color>
     <color name="white">#e9eaef</color>
     <color name="verde">#00d296</color>
     <color name="amarillo">#d29600</color>
 
+=======
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+    <color name="verde">#0fcc94</color>
+>>>>>>> origin/main
 </resources>

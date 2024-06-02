@@ -1,5 +1,6 @@
 package com.example.mapsapi
 
+<<<<<<< HEAD
 import android.Manifest
 import android.content.Intent
 import android.content.pm.PackageManager
@@ -15,6 +16,13 @@ import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
+=======
+import android.os.Bundle
+import android.widget.Button
+import android.widget.EditText
+import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
+>>>>>>> origin/main
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
@@ -22,6 +30,7 @@ import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
 
+<<<<<<< HEAD
 
 private lateinit var map:GoogleMap
 private val markers = ArrayList<MarkerData>()
@@ -35,12 +44,21 @@ class MainActivity : AppCompatActivity(), OnMapReadyCallback {
     private lateinit var mapTypeSpinner: Spinner
     private lateinit var anotherButton: Button
     private lateinit var fusedLocationClient: FusedLocationProviderClient
+=======
+private lateinit var map:GoogleMap
+class MainActivity : AppCompatActivity(), OnMapReadyCallback {
+
+    private lateinit var latInput: EditText
+    private lateinit var lngInput: EditText
+    private lateinit var addMarkerButton: Button
+>>>>>>> origin/main
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         createFragment()
+<<<<<<< HEAD
 
         addMarkerButton = findViewById(R.id.add_marker_button)
         listMarkersButton = findViewById(R.id.list_markers_button)
@@ -63,6 +81,22 @@ class MainActivity : AppCompatActivity(), OnMapReadyCallback {
 
         anotherButton.setOnClickListener {
             getLocation()
+=======
+        latInput = findViewById(R.id.lat_input)
+        lngInput = findViewById(R.id.lng_input)
+        addMarkerButton = findViewById(R.id.add_marker_button)
+
+        addMarkerButton.setOnClickListener {
+            val lat = latInput.text.toString().toDoubleOrNull()
+            val lng = lngInput.text.toString().toDoubleOrNull()
+
+            if (lat != null && lng != null) {
+                val coordinates = LatLng(lat, lng)
+                addMarker(coordinates)
+            } else {
+                Toast.makeText(this, "Por favor, introduce coordenadas válidas", Toast.LENGTH_SHORT).show()
+            }
+>>>>>>> origin/main
         }
     }
 
@@ -71,6 +105,7 @@ class MainActivity : AppCompatActivity(), OnMapReadyCallback {
         mapFragment.getMapAsync(this)
     }
 
+<<<<<<< HEAD
     private fun setupMapTypeSpinner() {
         val mapTypes = arrayOf("Normal", "Satelite", "Terreno", "Hibrido")
         val adapter = ArrayAdapter(this, android.R.layout.simple_spinner_item, mapTypes)
@@ -109,12 +144,15 @@ class MainActivity : AppCompatActivity(), OnMapReadyCallback {
         }
     }
 
+=======
+>>>>>>> origin/main
     override fun onMapReady(googleMap: GoogleMap) {
         map = googleMap
         createMarker()
         map.setOnMapClickListener { latLng ->
             addMarker(latLng)
         }
+<<<<<<< HEAD
 
     }
 
@@ -125,6 +163,17 @@ class MainActivity : AppCompatActivity(), OnMapReadyCallback {
         map.animateCamera(
             CameraUpdateFactory.newLatLngZoom(coordinates, 12f),
             3000,
+=======
+    }
+
+    private fun createMarker(){
+        val coordinates = LatLng(21.9127852,-102.3165875)
+        val marker = MarkerOptions().position(coordinates).title ("UAA EDIFICIO 58")
+        map.addMarker(marker)
+        map.animateCamera(
+            CameraUpdateFactory.newLatLngZoom(coordinates, 10f),
+            4000,
+>>>>>>> origin/main
             null
         )
     }
@@ -132,6 +181,7 @@ class MainActivity : AppCompatActivity(), OnMapReadyCallback {
     private fun addMarker(latLng: LatLng) {
         val markerOptions = MarkerOptions().position(latLng).title("Nuevo marcador")
         map.addMarker(markerOptions)
+<<<<<<< HEAD
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
@@ -171,4 +221,8 @@ class MainActivity : AppCompatActivity(), OnMapReadyCallback {
         }
     }
 
+=======
+        map.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng, 10f))
+    }
+>>>>>>> origin/main
 }
